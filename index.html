@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Elvira</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top shadow">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">MyPortfolio</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#documentation">Dokumentasi</a></li>
+                <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ================= HOME ================= -->
+<section id="home" class="hero d-flex align-items-center text-center text-white">
+    <div class="container">
+
+        <!-- GANTI FOTO PROFIL -->
+        <img src="images/me.jpeg" class="profile-img mb-4" alt="Profile">
+
+        <h1 class="fw-bold">{{ name }}</h1>
+        <p class="lead">{{ tagline }}</p>
+        <a href="#about" class="btn btn-light mt-3">Scroll Down</a>
+    </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 fw-bold">About Me</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>{{ about }}</p>
+
+                <h5 class="mt-4">Pengalaman</h5>
+                <ul>
+                    <li v-for="exp in experiences">{{ exp }}</li>
+                </ul>
+            </div>
+
+            <div class="col-md-6">
+                <h5>Skill Level</h5>
+                <div v-for="skill in skills" class="mb-3">
+                    <label>{{ skill.name }}</label>
+                    <div class="progress">
+                        <div class="progress-bar bg-primary"
+                            :style="{width: skill.level + '%'}">
+                            {{ skill.level }}%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= DOKUMENTASI ================= -->
+<section id="documentation" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5 fw-bold">Dokumentasi Kegiatan</h2>
+
+        <div class="row text-center">
+
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100">
+                    
+                    <!-- GANTI FOTO -->
+                    <img src="images/ap.JPEG" class="card-img-top" alt="Dokumentasi ">
+
+                    <div class="card-body">
+                        <p class="card-text">Kepanitiaan Aplikasi</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100">
+                    
+                    <!-- GANTI FOTO -->
+                    <img src="images/malpun.jpeg" class="card-img-top" alt="Dokumentasi ">
+
+                    <div class="card-body">
+                        <p class="card-text">Kepanitiaan Insevent</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100">
+                    
+                    <!-- GANTI FOTO -->
+                    <img src="images/or.jpeg" class="card-img-top" alt="Dokumentasi ">
+
+                    <div class="card-body">
+                        <p class="card-text">Organisasi Kampus</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= CERTIFICATES ================= -->
+<section id="certificates" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 fw-bold">Certificates</h2>
+
+        <div class="row">
+            <div class="col-md-3 mb-4" v-for="cert in certificates">
+                <div class="card shadow-sm h-100">
+
+                    <img :src="cert.image" class="card-img-top" alt="Certificate">
+
+                    <div class="card-body">
+                        <h6 class="card-title">{{ cert.title }}</h6>
+                        <p class="card-text small">{{ cert.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="custom-footer text-center">
+    <div class="container">
+        <p>© 2026 - {{ name }} | Portfolio Website</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Vue JS -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<script>
+const { createApp } = Vue
+
+createApp({
+    data() {
+        return {
+            name: "Elvira Agustin",
+            tagline: "Mahasiswa",
+
+            about: "Saya adalah pribadi yang mampu memanajemen waktu dengan baik antara akademik dan kegiatan organisasi. Saya terbiasa bekerja dalam tim, aktif berkomunikasi, serta menghargai pendapat orang lain untuk mencapai tujuan bersama.",
+
+            experiences: [
+                "Kepanitiaan Aplikasi",
+                "Panitia Insevent",
+                "Pengurus Organisasi Kampus"
+            ],
+
+            skills: [
+                { name: "Memanajemen Waktu", level: 90 },
+                { name: "Kerjasama Tim", level: 85 },
+                { name: "Berkomunikasi", level: 75 }
+            ],
+
+            certificates: [
+                {
+                    title: "Kepanitiaan Aplikasi",
+                    description: "Memberi pengalaman dalam berorganisasi.",
+                    image: "images/aplikasi.jpeg"
+                },
+                {
+                    title: "Kepanitiaan Insevent",
+                    description: "Memperluas jaringan profesional.",
+                    image: "images/insevent.PNG"
+                },
+                {
+                    title: "Organisasi Kampus",
+                    description: "Melatih komunikasi dan kepemimpinan.",
+                    image: "images/organisasi.png"
+                },
+                {
+                    title: "Upgrading Kepengurusan",
+                    description: "Meningkatkan kekompakan tim.",
+                    image: "images/upgrading.jpeg"
+                }
+            ]
+        }
+    }
+}).mount('#app')
+</script>
+
+</body>
+</html>
