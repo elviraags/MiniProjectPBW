@@ -3,13 +3,13 @@
 ## Tampilan Setiap Section / Fitur
 
 1. Navbar
-
+   
    Bagian paling atas website (fixed-top) yang berisi
    a. Logo / Nama: MyPortfolio
    c. Menu navigasi, yitu home, about, dokumentasi, dan sertifikat
 
 
-2. Home
+3. Home
 
    Tampilan pertama saat website dibuka
 
@@ -19,7 +19,7 @@
    d. Tombol scroll down
 
 
-3. About Me
+4. About Me
    
    a. Deskripsi diri
    
